@@ -48,7 +48,7 @@ class Image:
             for x in range(self.width):
                 color = self.color_distance(self.bw_scaled[x, y])
                 print(color)
-                self.bw_scaled[x,y] = color
+                # self.bw_scaled[x,y] = color
                 print(x)
                 self.output += color
 
