@@ -31,7 +31,10 @@ async def handle_photo(message: types.Message):
     img = Image(name, contrast=-20, brightness=-50, gamma=1.7)
     img.scale_and_bw(*list(map(int, message.caption
                                .split(' '))))
+    print('---------')
+
     text = img.apply_colors()
+    print('---------')
     os.remove(name)
     await message.answer(
         text
