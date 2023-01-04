@@ -32,6 +32,7 @@ async def handle_photo(message: types.Message):
     print('---------')
     params = list(map(int, message.caption.split(' ')))
     print(params)
+    input()
     img.scale_and_bw(*params)
     print('---------')
 
