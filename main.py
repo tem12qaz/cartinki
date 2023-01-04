@@ -30,9 +30,9 @@ async def handle_photo(message: types.Message):
     await photo.download(destination=name)
     img = Image(name, contrast=-20, brightness=-50, gamma=1.7)
     print('---------')
-
-    img.scale_and_bw(*list(map(int, message.caption
-                               .split(' '))))
+    params = list(map(int, message.caption.split(' ')))
+    print(params)
+    img.scale_and_bw(*params)
     print('---------')
 
     text = img.apply_colors()
