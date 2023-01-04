@@ -30,7 +30,7 @@ async def handle_photo(message: types.Message):
     name = f'files/{message.message_id}_{photo.file_id}.jpg'
     try:
         await photo.download(destination=name)
-        img = Image(name, contrast=-20, brightness=-50, gamma=1.7)
+        img = Image(name, contrast=-23, brightness=-30, gamma=1.8)
         print('---------')
         params = list(map(int, message.caption.split(' ')))
         print(params)
