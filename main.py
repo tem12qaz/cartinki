@@ -1,5 +1,6 @@
 import asyncio
 import os
+import traceback
 
 from aiogram import Bot, Dispatcher, types
 from aiogram.dispatcher.filters import ChatTypeFilter
@@ -27,21 +28,25 @@ async def handle_photo(message: types.Message):
         photo = message.photo[-1]
 
     name = f'files/{message.message_id}_{photo.file_id}.jpg'
-    await photo.download(destination=name)
-    img = Image(name, contrast=-20, brightness=-50, gamma=1.7)
-    print('---------')
-    params = list(map(int, message.caption.split(' ')))
-    print(params)
-    input()
-    img.scale_and_bw(*params)
-    print('---------')
+    try:
+        await photo.download(destination=name)
+        img = Image(name, contrast=-20, brightness=-50, gamma=1.7)
+        print('---------')
+        params = list(map(int, message.caption.split(' ')))
+        print(params)
+        input()
+        img.scale_and_bw(*params)
+        print('---------')
 
-    text = img.apply_colors()
-    print('---------')
-    os.remove(name)
-    await message.answer(
-        text
-    )
+        text = img.apply_colors()
+        print('---------')
+        os.remove(name)
+        await message.answer(
+            text
+        )
+    except Exception as e:
+        print(traceback.format_exc())
+
 
 
 async def on_startup(dp):
