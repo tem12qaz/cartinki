@@ -29,7 +29,8 @@ async def handle_photo(message: types.Message):
     name = f'files/{message.message_id}_{photo.file_id}.jpg'
     await photo.download(destination=name)
     img = Image(name, contrast=-20, brightness=-50, gamma=1.7)
-    img.scale_and_bw(*list(map(int, message.text.split(' '))))
+    img.scale_and_bw(*list(map(int, message.caption
+                               .split(' '))))
     text = img.apply_colors()
     os.remove(name)
     await message.answer(
